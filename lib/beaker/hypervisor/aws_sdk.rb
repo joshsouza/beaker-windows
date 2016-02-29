@@ -32,6 +32,7 @@ module Beaker
         :log_level => :debug,
         :log_formatter => AWS::Core::LogFormatter.colored,
         :max_retries => 12,
+        :use_iam_profile => true,
       }
       AWS.config(config)
 
