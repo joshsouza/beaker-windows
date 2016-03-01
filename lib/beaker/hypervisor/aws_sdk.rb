@@ -1,5 +1,5 @@
 require 'aws/ec2'
-require 'aws-sdk'
+#require 'aws-sdk'
 require 'set'
 require 'zlib'
 require 'beaker/hypervisor/ec2_helper'
@@ -26,14 +26,15 @@ module Beaker
       # Get AWS credentials
       creds = load_credentials()
 
-      role_credentials = Aws::AssumeRoleCredentials.new(
-        role_arn: creds[:access_key],
-        role_session_name: creds[:secret_key]
-      )
+      #role_credentials = Aws::AssumeRoleCredentials.new(
+      #  role_arn: creds[:access_key],
+      #  role_session_name: creds[:secret_key]
+      #)
       config = {
         #:access_key_id => creds[:access_key],
         #:secret_access_key => creds[:secret_key],
-        :credentials => role_credentials,
+        #:credentials => role_credentials,
+        :credential_provider => AWS::Core::CredentialProviders::DefaultProvider.new(),
         :logger => Logger.new($stdout),
         :log_level => :debug,
         :log_formatter => AWS::Core::LogFormatter.colored,
