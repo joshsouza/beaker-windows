@@ -27,8 +27,8 @@ module Beaker
       # Get AWS credentials
       creds = load_credentials()
 
-      role_credentials = Aws::AssumeRoleCredentials.new(
-        client: Aws::STS::Client.new(),
+      role_credentials = AWS::AssumeRoleCredentials.new(
+        client: AWS::STS::Client.new(),
         role_arn: creds[:access_key],
         role_session_name: creds[:secret_key]
       )
