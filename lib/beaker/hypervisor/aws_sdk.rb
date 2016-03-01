@@ -26,8 +26,8 @@ module Beaker
       creds = load_credentials()
 
       config = {
-        :access_key_id => creds[:access_key],
-        :secret_access_key => creds[:secret_key],
+        #:access_key_id => creds[:access_key],
+        #:secret_access_key => creds[:secret_key],
         :logger => Logger.new($stdout),
         :log_level => :debug,
         :log_formatter => AWS::Core::LogFormatter.colored,
