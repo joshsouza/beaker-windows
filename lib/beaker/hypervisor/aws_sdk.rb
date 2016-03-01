@@ -25,15 +25,22 @@ module Beaker
       # Get AWS credentials
       creds = load_credentials()
 
+      role_credentials = Aws::AssumeRoleCredentials.new(
+        client: Aws::STS::Client.new(),
+        role_arn: creds[:access_key],
+        role_session_name: creds[:secret_key]
+      )
       config = {
         #:access_key_id => creds[:access_key],
         #:secret_access_key => creds[:secret_key],
+        :credentials => role_credentials,
         :logger => Logger.new($stdout),
         :log_level => :debug,
         :log_formatter => AWS::Core::LogFormatter.colored,
         :max_retries => 12,
         :use_iam_profile => true,
       }
+
       AWS.config(config)
 
       @ec2 = AWS::EC2.new()
