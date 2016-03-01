@@ -1,6 +1,5 @@
 require 'aws/ec2'
-require 'aws'
-require 'aws/sts'
+require 'aws-sdk'
 require 'set'
 require 'zlib'
 require 'beaker/hypervisor/ec2_helper'
@@ -27,8 +26,8 @@ module Beaker
       # Get AWS credentials
       creds = load_credentials()
 
-      role_credentials = AWS::AssumeRoleCredentials.new(
-        client: AWS::STS::Client.new(),
+      role_credentials = Aws::AssumeRoleCredentials.new(
+        client: Aws::STS::Client.new(),
         role_arn: creds[:access_key],
         role_session_name: creds[:secret_key]
       )
