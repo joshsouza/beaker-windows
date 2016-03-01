@@ -1,4 +1,6 @@
 require 'aws/ec2'
+require 'aws'
+require 'aws/sts'
 require 'set'
 require 'zlib'
 require 'beaker/hypervisor/ec2_helper'
